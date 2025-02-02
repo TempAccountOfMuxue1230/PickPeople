@@ -1,12 +1,13 @@
 from functions import *
 import maliang as ml
+import maliang.extensions as ml_ext
 
 # Initialize window
 root = ml.Tk((720, 360), title="抽人")
 root.center()
 root.resizable(False, False)
 root.topmost(True)
-root.at_exit(get_exit_ask(root), ensure_destroy=False)
+root.at_exit(ml_ext.utils.get_exit_ask_function(root), ensure_destroy=False)
 
 # Initialize base canvas
 cav = ml.Canvas(root, bg="white")
@@ -24,7 +25,7 @@ sub_cav_2.place(width=720, height=300, x=720, y=60)
 
 # Place things to header cav
 ml.SegmentedButton(header_cav, (260, 10), ((100, 30), (100, 30)), text=("抽 人", "抽 卡"), default=0, command=get_pick(root, sub_cav_1, sub_cav_2))
-ml.IconOnlyButton(header_cav, (720, 0), (60, 60), image=ml.PhotoImage(file=resource_path("assets\\icon.png")), anchor="ne")
+ml_ext.IconOnlyButton(header_cav, (720, 0), (60, 60), image=ml.PhotoImage(file=resource_path("assets\\icon.png")), anchor="ne")
 
 # Place things to "Pick People" Page
 t1 = ml.Text(sub_cav_1, (360, 100), text="【等待抽人】", fontsize=60, anchor="center")
